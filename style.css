@@ -705,3 +705,49 @@ a:hover {
         opacity: 0;
     }
 }
+
+/* Coming Soon Banner */
+.coming-soon-banner {
+    margin: 30px 0 20px 0;
+    padding: 15px 20px;
+    border: 1px solid var(--accent-rust-glow);
+    background: rgba(255, 107, 53, 0.05);
+    /* Match accent-rust */
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.coming-soon-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent-rust);
+    box-shadow: 0 0 10px var(--accent-rust-glow);
+}
+
+.coming-soon-text {
+    font-family: var(--font-wide);
+    font-size: 1.1em;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    margin-top: 8px;
+    animation: pulse-op 2s infinite ease-in-out;
+}
+
+@keyframes pulse-op {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
