@@ -204,12 +204,28 @@
 /* Responsive */
 @media (max-width: 768px) {
     .fixed-intro-box {
-        padding: 30px 25px;
-        width: 95%;
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none !important;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 100px;
+        margin-bottom: 200px;
+        /* Space for footer */
+        padding: 30px 20px;
+        border: none;
+        border-top: 1px solid var(--hud-border);
+        border-bottom: 1px solid var(--hud-border);
+        background: rgba(0, 0, 0, 0.7);
     }
 
     .fixed-intro-box p {
         font-size: 1em;
+    }
+
+    .book-titles {
+        margin-top: 25px;
     }
 
     .book-title-btn {
