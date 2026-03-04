@@ -210,9 +210,8 @@
         transform: none !important;
         width: 100%;
         max-width: 100%;
-        margin-top: 100px;
-        margin-bottom: 200px;
-        /* Space for footer */
+        margin-top: 40px;
+        margin-bottom: 40px;
         padding: 30px 20px;
         border: none;
         border-top: 1px solid var(--hud-border);
