@@ -1,0 +1,234 @@
+/* Fixed Intro Box */
+.fixed-intro-box {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%) translateY(30px);
+    max-width: 700px;
+    width: 90%;
+    padding: 40px 50px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 4px;
+    border: 1px solid var(--hud-border);
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.8s ease-out 0.3s,
+        transform 0.8s ease-out 0.3s;
+}
+
+.fixed-intro-box.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+}
+
+.fixed-intro-box p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.fixed-intro-box strong {
+    color: var(--accent-rust);
+    letter-spacing: 1px;
+}
+
+.fixed-intro-box .universe-highlight {
+    color: #d45a2a;
+    letter-spacing: 1.5px;
+}
+
+/* Book Title Buttons */
+.book-titles {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.book-title-btn {
+    background: transparent;
+    border: 1px solid var(--accent-rust-glow);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.95em;
+    letter-spacing: 3px;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.book-title-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-rust-glow);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.book-title-btn:hover::before {
+    left: 0;
+}
+
+.book-title-btn:hover {
+    border-color: var(--accent-rust);
+    box-shadow: 0 0 20px var(--accent-rust-glow);
+}
+
+.book-title-btn .bracket {
+    color: var(--accent-rust);
+    opacity: 0.7;
+}
+
+/* Panel Overlay */
+.panel-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 9998;
+}
+
+.panel-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Slide-out Panels */
+.book-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 600px;
+    max-width: 90vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid var(--accent-rust-glow);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+    z-index: 9999;
+    overflow-y: auto;
+    padding: 60px 40px 40px 40px;
+}
+
+.book-panel.active {
+    transform: translateX(0);
+}
+
+/* Panel Close Button */
+.panel-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--accent-rust);
+    font-size: 2.5em;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.panel-close:hover {
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+/* Panel Content */
+.panel-content {
+    color: #fff;
+}
+
+.panel-content .hud-technical-label {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.panel-content h3 {
+    font-family: var(--font-mono);
+    font-size: 1.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: var(--accent-rust);
+}
+
+.panel-content .tagline {
+    font-family: var(--font-mono);
+    font-size: 1em;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.panel-content p {
+    font-size: 0.88em;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.panel-content .summary {
+    border-left: 3px solid var(--accent-rust);
+    padding-left: 20px;
+    font-weight: 600;
+    margin-top: 30px;
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .fixed-intro-box {
+        padding: 30px 25px;
+        width: 95%;
+    }
+
+    .fixed-intro-box p {
+        font-size: 1em;
+    }
+
+    .book-title-btn {
+        font-size: 0.85em;
+        padding: 12px 15px;
+    }
+
+    .book-panel {
+        width: 100%;
+        max-width: 100%;
+        padding: 50px 25px 25px 25px;
+    }
+
+    .panel-content h3 {
+        font-size: 1.4em;
+    }
+}
+
+/* Prevent body scroll when panel is open */
+body.panel-open {
+    overflow: hidden;
+}

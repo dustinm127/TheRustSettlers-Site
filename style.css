@@ -1,11 +1,19 @@
-/* The Rust Settlers - Landing Page Styles */
+/* Technical & Futuristic Fonts (Auriga Inspired) */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Syncopate:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+
 :root {
-    --bg-color: #f7f7f7;
-    --text-color: #333;
-    --accent-color: #8b3e2b;
-    /* A rusty red/orange color */
+    --primary-bg: #000000;
+    --accent-rust: #ff6b35;
+    --accent-rust-glow: rgba(255, 107, 53, 0.4);
+    --text-muted: #888;
+    --hud-border: rgba(255, 255, 255, 0.1);
+    --font-wide: 'Syncopate', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
 }
 
+/* Reset & Core Defaults */
 * {
     margin: 0;
     padding: 0;
@@ -13,105 +21,687 @@
 }
 
 body {
-    font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #ffffff;
+    background-color: var(--primary-bg);
+    height: 100vh;
     overflow: hidden;
-    /* Subtle background texture */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
-}
-
-.landing-container {
-    padding: 2rem;
-    max-width: 600px;
-    width: 100%;
-    animation: fadeIn 1s ease-out;
     position: relative;
+    -webkit-font-smoothing: antialiased;
 }
 
-.rust-header {
-    font-family: 'VT323', monospace;
-    font-size: 1.25rem;
-    color: var(--accent-color);
-    text-align: center;
-    margin-bottom: 1rem;
-    letter-spacing: 2px;
+/* Page Transition Overlay */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    z-index: 9999;
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 0.6s ease-out;
 }
 
-.content-box {
-    text-align: center;
-    background: white;
-    padding: 4rem 2rem;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+.page-transition-overlay.hidden {
+    opacity: 0;
 }
 
-h1 {
-    font-size: 2.5rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
+.page-transition-overlay.fade-in {
+    opacity: 1;
+    pointer-events: all;
 }
 
-.divider {
-    width: 60px;
-    height: 3px;
-    background: var(--accent-color);
-    margin: 0 auto 2rem auto;
+body.rust-settlers-theme::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 50px var(--accent-rust-glow);
+    pointer-events: none;
+    z-index: 9999;
 }
 
-.description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-}
-
-.button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: transparent;
-    color: var(--text-color);
+a {
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-size: 0.85rem;
+    color: inherit;
+    transition: opacity 0.3s ease;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+/* Background Handling */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.0);
+    will-change: transform;
+    transition: transform 1.5s cubic-bezier(0.4, 0.0, 0.2, 1),
+        object-position 1.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    filter: grayscale(100%) contrast(0.6) brightness(1.1);
+}
+
+.background-image.zoomed {
+    object-position: 12% 35%;
+    transform: scale(1.32);
+}
+
+/* Dark overlay to ensure text readability */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    /* Slight dim */
+}
+
+/* Header - At 2/3 page position */
+.site-header {
+    position: absolute;
+    top: 66vh;
+    left: 50px;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.logo {
+    font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 24px;
     font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    line-height: 1.8;
+}
+
+.logo span {
+    display: block;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+    display: inline-block;
+    /* Allows transform on hover */
+}
+
+.logo a::before {
+    content: '↗';
+    display: inline-block;
+    margin-right: 12px;
+    font-weight: 300;
+    font-size: 0.6em;
+    /* 50% smaller */
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    /* Fine tune vertical alignment */
+    transition: transform 0.3s ease;
+}
+
+.logo a:hover::before {
+    transform: translate(3px, -3px);
+}
+
+.logo a:hover {
+    opacity: 0.7;
+}
+
+/* Header Navigation - Below Logo */
+.header-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.header-nav .nav-link {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: opacity 0.3s ease;
+}
+
+.header-nav .nav-link:hover {
+    opacity: 0.7;
+}
+
+/* Main Navigation - Center Left */
+.main-nav {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.main-nav nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nav-link {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #fff;
+    /* No visual button style, just clean text links */
+}
+
+/* Footer Nav - Above Social Links */
+.footer-nav {
+    position: fixed;
+    bottom: 80px;
+    left: 50px;
+    display: flex;
+    gap: 32px;
+    z-index: 10;
+}
+
+/* Footer - Bottom Right for Version Pill */
+.site-footer {
+    position: fixed;
+    bottom: 32px;
+    right: 48px;
+    z-index: 100;
+}
+
+/* Version Pill */
+.version-pill {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 50px;
+    gap: 20px;
+    border: 1px solid #ffffff;
+}
+
+.pill-text {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* Social Links - Bottom Left */
+.social-links {
+    position: fixed;
+    bottom: 40px;
+    left: 50px;
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+}
+
+.social-icon {
+    font-size: 18px;
+    /* Slightly larger icons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Thin circle outline style */
+    border-radius: 50%;
     transition: all 0.3s ease;
-    border: 2px solid var(--text-color);
 }
 
-.button:hover {
-    background-color: var(--text-color);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+.social-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+    opacity: 1;
 }
 
-@keyframes fadeIn {
+/* Back to Home Button */
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid #333333;
+    padding: 8px 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: #ffffff;
+    z-index: 100;
+}
+
+.back-button:hover {
+    background: rgba(0, 0, 0, 0.95);
+    border-color: #666666;
+}
+
+.footer-nav {
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.footer-link:hover {
+    opacity: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+
+    .site-header,
+    .main-nav,
+    .site-footer {
+        left: 30px;
+    }
+
+    .logo {
+        font-size: 12px;
+    }
+
+    .nav-link {
+        font-size: 16px;
+    }
+}
+
+/* Other Projects Page Specific Styles */
+.other-projects-page {
+    background-color: #ffffff;
+    background: linear-gradient(to bottom, #ffffff 70%, #e0e0e0 100%);
+    /* White to light grey gradient at bottom */
+    color: #000000;
+    /* Dark text for white background */
+}
+
+/* Update Header/Links for light background */
+.other-projects-page .logo a {
+    color: #000000;
+}
+
+.other-projects-page .social-icon {
+    border-color: rgba(0, 0, 0, 0.3);
+    color: #000000;
+}
+
+.other-projects-page .social-icon:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border-color: #000000;
+}
+
+/* Right-aligned Projects List */
+.projects-list-container {
+    position: absolute;
+    top: 50%;
+    right: 100px;
+    /* Position to the right */
+    transform: translateY(-50%);
+    text-align: right;
+    z-index: 10;
+    /* Ensure links are above the background */
+}
+
+.projects-list {
+    list-style: none;
+    /* Removed bullets */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.projects-list li {
+    margin-left: 0;
+    /* Remove space for bullets */
+}
+
+.project-link {
+    font-size: 24px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #333;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Interactive Background for Other Projects */
+.hover-background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1.2s ease;
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 30%, transparent 50%);
+    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 30%, transparent 50%);
+}
+
+.hover-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+/* Adjust project link for better hover visibility when background is active */
+.project-link:hover {
+    color: #fff;
+    /* White text on hover when BG changes */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    transform: translateX(-10px);
+    opacity: 1;
+}
+
+.other-projects-page .project-link {
+    color: #333;
+}
+
+.other-projects-page .project-link:hover {
+    color: #000;
+}
+
+/* Specific hover behavior for links with background data */
+.project-link[data-bg]:hover {
+    color: #fff !important;
+}
+
+/* Responsive adjustment for projects page */
+@media (max-width: 768px) {
+    .projects-list-container {
+        right: 30px;
+        left: 30px;
+        /* Full width on mobile if needed, or just keep right */
+        text-align: right;
+    }
+
+    .project-link {
+        font-size: 18px;
+    }
+}
+
+/* Echoes Trilogy Content Styles */
+.scroll-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 150px 0 100px 0;
+    /* Space for fixed header/footer */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+    z-index: 5;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+.trilogy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 35px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 4px;
+}
+
+.intro,
+.outro {
+    font-size: 1.2em;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 60px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.book-section {
+    margin-bottom: 50px;
+}
+
+.book-section h3 {
+    font-family: var(--font-mono);
+    font-size: 1.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: var(--accent-rust);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.book-section h3::before {
+    content: '[ ';
+    color: var(--accent-rust);
+    opacity: 0.5;
+}
+
+.book-section h3::after {
+    content: ' ]';
+    color: var(--accent-rust);
+    opacity: 0.5;
+}
+
+.tagline {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    color: var(--text-muted);
+}
+
+.book-section p {
+    font-size: 1.05em;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.summary {
+    font-weight: 400 !important;
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
+    padding-left: 20px;
+    margin-top: 30px;
+    color: #fff !important;
+}
+
+/* Responsive adjustment for trilogy content */
+@media (max-width: 768px) {
+    .scroll-container {
+        padding: 120px 0 80px 0;
+    }
+
+    .trilogy-content {
+        padding: 20px;
+    }
+
+    .book-section h3 {
+        font-size: 1.5em;
+    }
+}
+
+/* HUD Decorative Elements */
+.hud-technical-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--accent-rust);
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.hud-bracket-container {
+    position: relative;
+    padding: 60px 40px;
+    margin-bottom: 40px;
+}
+
+.hud-bracket-container::before,
+.hud-bracket-container::after,
+.hud-bracket-container>.corner-bottom-left::before,
+.hud-bracket-container>.corner-bottom-right::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--accent-rust-glow);
+    pointer-events: none;
+}
+
+.hud-bracket-container::before {
+    top: 0;
+    left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.hud-bracket-container::after {
+    top: 0;
+    right: 0;
+    border-left: 0;
+    border-bottom: 0;
+}
+
+.corner-bottom-left::before {
+    bottom: 0;
+    left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+
+.corner-bottom-right::before {
+    bottom: 0;
+    right: 0;
+    border-left: 0;
+    border-top: 0;
+}
+
+/* Grid Dot Pattern Background */
+.grid-dots {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--accent-rust-glow) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.project-header-enhanced {
+    position: absolute;
+    bottom: 110px;
+    left: 50px;
+    font-family: var(--font-wide);
+    font-size: 0.7em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #fff;
+    /* border-bottom removed */
+    padding-bottom: 6px;
+    z-index: 10;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    /* Hidden initially */
+}
+
+/* Typing animation */
+.project-header-enhanced.typing {
+    animation: typing 2s steps(22) forwards;
+}
+
+@keyframes typing {
     from {
-        opacity: 0;
-        transform: translateY(20px);
+        width: 0;
     }
 
     to {
-        opacity: 1;
-        transform: translateY(0);
+        width: 440px;
     }
 }
 
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2rem;
+/* Blinking cursor */
+.project-header-enhanced::after {
+    content: '█';
+    color: var(--accent-rust);
+    animation: blink 0.7s step-end infinite;
+    margin-left: 3px;
+}
+
+.project-header-enhanced.typing-complete::after {
+    animation: none;
+    opacity: 0;
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
     }
 
-    .content-box {
-        padding: 3rem 1.5rem;
+    51%,
+    100% {
+        opacity: 0;
     }
 }

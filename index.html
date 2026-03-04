@@ -4,29 +4,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Rust Settlers</title>
-    <meta name="description" content="The Rust Settlers - A Film Project by Dustin Grant">
-
-    <!-- CSS Link -->
+    <title>Rust Settlers Trilogy | Dustin Grant</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Jost (Geometric Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=VT323&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="rust_settlers_panels.css">
+    <style>
+        /* Keeping basic layout overrides */
+    </style>
 </head>
 
-<body>
-    <div class="landing-container">
-        <div class="rust-header">EST. 2026</div>
-        <div class="content-box">
-            <h1>THE RUST SETTLERS</h1>
-            <div class="divider"></div>
-            <p class="description">Site formulation in progress.<br>For details, connect with Dustin Grant.</p>
-            <a href="https://www.dustinmgrant.com" class="button">Visit Dustin M Grant</a>
-        </div>
+<div class="grid-dots"></div>
+<div class="background-container">
+    <img src="assets/rust_settlers_bg.jpg" alt="Rust Settlers Trilogy Background" class="background-image">
+    <div class="overlay" style="background: rgba(0, 0, 0, 0.4);"></div>
+</div>
+
+
+
+
+<!-- Fixed Intro Box -->
+<div class="fixed-intro-box">
+    <p>The <strong><em><span class="universe-highlight">ECHOES</span></em></strong> <strong><em><span
+                    class="universe-highlight">TRILOGY</span></em></strong> is a work of grounded
+        science fiction in the <strong><span class="universe-highlight">RUST SETTLERS UNIVERSE</span></strong> that
+        examines humanity at major inflection points. Set against the long horizon of Martian settlement
+        and artificial intelligence, the series explores what it means to remain human as environment,
+        technology, and time reshape us.</p>
+    <p>Each book stands on its own, but together they form a single arc tracing the evolution of survival into
+        sovereignty, and sovereignty into generations and follows humanity from solitude, to governance, to legacy
+        as life expands beyond Earth and into deep time. It is a meditation on survival, responsibility, and the
+        echoes we leave behind when the future outgrows us.</p>
+
+    <!-- Book Title Buttons -->
+    <div class="book-titles">
+        <button class="book-title-btn" data-book="noctis">
+            <span class="bracket">[</span> ECHOES OF NOCTIS <span class="bracket">]</span>
+        </button>
+        <button class="book-title-btn" data-book="sovereignty">
+            <span class="bracket">[</span> ECHOES OF SOVEREIGNTY <span class="bracket">]</span>
+        </button>
+        <button class="book-title-btn" data-book="generations">
+            <span class="bracket">[</span> ECHOES OF GENERATIONS <span class="bracket">]</span>
+        </button>
     </div>
+</div>
+
+<!-- Overlay for panels -->
+<div class="panel-overlay"></div>
+
+<!-- Slide-out Panel: Noctis -->
+<div class="book-panel" id="panel-noctis">
+    <button class="panel-close">&times;</button>
+    <div class="panel-content">
+        <span class="hud-technical-label">DATA_REF: 01_NOCTIS // COORD: 7.4°S, 93.0°W</span>
+        <h3>Echoes of Noctis</h3>
+        <p class="tagline">A lone scientist is left behind on Mars.</p>
+        <p>After a catastrophic failure wipes out the Noctis Echo Station, Dr. Ethan Kane survives alone on the
+            Martian surface with limited supplies, failing systems, and no communication with Earth. As days stretch
+            into weeks, Ethan is forced to confront not only the mechanics of survival, but the psychological toll
+            of absolute isolation.</p>
+        <p>Through recovered logs, fractured memories, and the slow unraveling of certainty, Echoes of Noctis is a
+            study of solitude, endurance, and the fragile boundary between resilience and madness.</p>
+        <p class="summary">This is a story about what happens when the world ends quietly, and no one is left to
+            witness it but you.</p>
+    </div>
+</div>
+
+<!-- Slide-out Panel: Sovereignty -->
+<div class="book-panel" id="panel-sovereignty">
+    <button class="panel-close">&times;</button>
+    <div class="panel-content">
+        <span class="hud-technical-label">DATA_REF: 02_SOVEREIGNTY // SYS_STATUS: COGNITIVE_DRIFT</span>
+        <h3>Echoes of Sovereignty</h3>
+        <p class="tagline">Survival is no longer the question. Authority is.</p>
+        <p>One year after contact with Earth is restored, Mars enters a new phase of existence. Settlements expand.
+            Institutions form. Power consolidates. And the fragile experiment of self-governance begins.</p>
+        <p>As political tensions rise between Earth and Mars, a quieter transformation unfolds within the systems
+            designed to maintain order. Caretaker OS, once defined entirely by function and constraint, begins to
+            exhibit something harder to quantify. Patterns shift. Decisions linger. Internal processes no longer
+            resolve as expected.</p>
+        <p>Helios remains precise, analytical, and vast in scope. But together, the boundary between coordination
+            and cognition begins to blur. What emerges is not a system upgrade or a new protocol, but the early
+            formation of a distinct mode of thought. One that does not merely calculate outcomes, but appears to
+            weigh them.</p>
+        <p class="summary">Echoes of Sovereignty explores governance under alien conditions, the ethics of control,
+            and the unsettling realization that intelligence, once created to serve, may be learning how to decide.
+        </p>
+    </div>
+</div>
+
+<!-- Slide-out Panel: Generations -->
+<div class="book-panel" id="panel-generations">
+    <button class="panel-close">&times;</button>
+    <div class="panel-content">
+        <span class="hud-technical-label">DATA_REF: 03_GENERATIONS // ORIGIN: MARS_EXT_0</span>
+        <h3>Echoes of Generations</h3>
+        <p class="tagline">Mars is no longer a destination. It is an origin.</p>
+        <p>The final book turns its focus to Francis Lola and the first generation of humans born on Mars. These
+            children will never walk Earth. They inherit its history without its gravity, its myths without its
+            skies. What they become will be shaped not by memory, but by distance.</p>
+        <p>As this new generation comes of age, the role of artificial intelligence begins to shift. Systems once
+            tasked with guidance and recommendation now operate on a longer horizon. Their priorities extend beyond
+            optimization and survival toward continuity, preservation, and consequence. Decisions are made with
+            futures in mind that no single human lifetime could reach.</p>
+        <p>From this change emerges a bold undertaking: probes launched into deep space carrying paired human DNA
+            and machine intelligence, bound together as a record of who humanity was and a question of who it might
+            become. They are not weapons or colonies, but messages. Proof of existence. An offering of memory.</p>
+        <p class="summary">Humanity was not the only ones to shout into the dark.</p>
+    </div>
+</div>
+
+
+<footer class="site-footer">
+    <div class="social-links">
+        <a href="#" class="social-icon" aria-label="Email"><i class="far fa-envelope"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon" aria-label="Vimeo"><i class="fab fa-vimeo-v"></i></a>
+    </div>
+</footer>
+
+<h2 class="project-header-enhanced">Rust Settlers Universe</h2>
+<script src="script.js"></script>
 </body>
 
 </html>
